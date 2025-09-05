@@ -1,18 +1,20 @@
-FROM python:3.9.2-slim-buster
+FROM python:3.9-slim-bullseye
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         gcc \
         libffi-dev \
-        musl-tools \ 
+        musl-tools \
         ffmpeg \
         aria2 \
         python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy project
+# Set working directory
 WORKDIR /app
+
+# Copy project files
 COPY . /app/
 
 # Install Python dependencies
